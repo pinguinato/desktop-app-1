@@ -3,12 +3,17 @@ from tkinter import Entry
 from tkinter import Label
 from tkinter import ttk
 from tkinter import StringVar
+from db import Database
 
 # create window object
 app = Tk()
 
+db = Database("store.db")
+
 def populate_list():
     print("Populate")
+    for row in db.fetch():
+        parts_list.insert(END, row)
 
 def add_item():
     print("Add")
@@ -79,5 +84,10 @@ app.title("Part Manager")
 # dimensioni della finestra
 app.geometry("700x350")
 # start application
+
+
+populate_list()
+
+
 app.mainloop()
 
